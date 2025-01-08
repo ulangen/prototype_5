@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     public GameObject titleScreen;
 
+    private int lives;
+    public TextMeshProUGUI livesText;
+
     public void StartGame(int difficulty)
     {
         isGameActive = true;
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
         titleScreen.gameObject.SetActive(false);
+        UpdateLives(3);
     }
 
     IEnumerator SpawnTarget()
@@ -54,5 +58,15 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void UpdateLives(int livesToChange)
+    {
+        lives += livesToChange;
+        livesText.text = "Lives: " + lives;
+        if (lives <= 0)
+        {
+            GameOver();
+        }
     }
 }
