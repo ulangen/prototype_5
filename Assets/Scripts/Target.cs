@@ -37,7 +37,7 @@ public class Target : MonoBehaviour
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
 
-    void OnMouseDown()
+    public void DestoryTarget()
     {
         if (gameManager.isGameActive)
         {
